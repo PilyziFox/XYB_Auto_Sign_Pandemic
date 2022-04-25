@@ -234,7 +234,7 @@ def newSign(sessionId, data):
     return resp['msg']
 
 
-# 获取直传规则
+# 获取oss规则
 def getPolicy(sessionId):
     data = {
         'customerType': 'STUDENT',
@@ -248,7 +248,7 @@ def getPolicy(sessionId):
     return resp
 
 
-# 获取上传地址
+# 获取图片Url
 def getOssUrl(sessionId):
     policy = getPolicy(sessionId)
     healthCodeImg = max(glob.glob('healthCodeImg/*'), key=os.path.getctime)  # 获取文件夹内最新的一张健康码截图
