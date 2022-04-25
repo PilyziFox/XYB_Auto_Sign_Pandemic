@@ -194,7 +194,8 @@ def getSignForm(data, user):
 def checkUserInfo():
     with open('user.json', 'r', encoding='utf8') as fp:
         user = json.load(fp)
-        if not (user['location']['province'] == "XX省" and user['location']['city'] == "XX市" and user['location']['adcode'] == "城市编码" and user['location']['address'] == "XX街道XX路XX号"):
+        if not (user['location']['province'] == "XX省" and user['location']['city'] == "XX市" and user['location'][
+            'adcode'] == "城市编码" and user['location']['address'] == "XX街道XX路XX号"):
             if not (user['token']['openId'] == "填写你的openId" and user['token']['unionId'] == "填写你的unionId"):
                 return True
     fp.close()
@@ -349,7 +350,7 @@ def preCheck():
     if info['healthCodeStatus'] != '填写你的健康码状态' and info['locationRiskLevel'] != '填写你的所在地风险':
         healthInfo = False
 
-    if healthCode or travelCode or healthInfo or userInfo:
+    if healthCode or travelCode or healthInfo or not userInfo:
         log("请完成以下步骤后，再重新执行签到：")
         order = 1
         if healthCode:
@@ -413,7 +414,7 @@ def main(argv):
         'clockStatus': '2'
     }
     if getSignStatus(sessionId, trainId):
-        log('今天已经已签到啦 :)')
+        log('今天已经已签到啦,无需再次签到 :)')
         # newSign(sessionId, signFormData)（不可用，会提示 “状态异常，请联系客服...”）
     else:
         saveEpidemicSituation(sessionId)
