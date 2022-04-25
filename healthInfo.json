@@ -1,0 +1,7 @@
+{
+  "healthCodeStatus":"填写你的健康码状态",
+  "locationRiskLevel":"填写你的所在地风险",
+  "__comment__": "0 分别代表低风险和绿码，1 代表黄码和中风险, 2 代表..."
+}
+
+
